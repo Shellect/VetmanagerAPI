@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VetmanagerAPI", "VetmanagerAPI.csproj", "{847EF845-ED99-4997-9B94-31AD67C6419E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{847EF845-ED99-4997-9B94-31AD67C6419E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847EF845-ED99-4997-9B94-31AD67C6419E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847EF845-ED99-4997-9B94-31AD67C6419E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847EF845-ED99-4997-9B94-31AD67C6419E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A33AB1F6-E09E-44AF-B738-F8EB8071D1C9}
+	EndGlobalSection
+EndGlobal
