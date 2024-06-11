@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VetmanagerAPI
+namespace VetmanagerAPI.entities
 {
     public class Client
     {
-        public int? Client_id { get; set; }
+        public int Client_id { get; set; }
         public string? Last_name { get; set; }
         public string? First_name { get; set; }
         public string? Middle_name { get; set; }
@@ -31,6 +31,6 @@ namespace VetmanagerAPI
         public string? Clinic_phone_prefix { get; set; }
         public List<Pet>? Pets { get; set; }
 
-        public string FullName { get {  return Last_name + ' ' + First_name + ' ' + Middle_name; } }
+        public string FullName { get { return Last_name + ' ' + First_name + ' ' + Middle_name; } }
     }
 }

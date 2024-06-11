@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VetmanagerAPI.data;
 
-namespace VetmanagerAPI
+namespace VetmanagerAPI.responses
 {
     internal class ClientResponse
     {

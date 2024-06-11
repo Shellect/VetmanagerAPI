@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace VetmanagerAPI
+namespace VetmanagerAPI.responses
 {
     public class SettingsResponse
     {
-        readonly static XmlSerializer xmlSerializer = new(typeof(ServiceToken));
+        readonly static XmlSerializer xmlSerializer = new(typeof(Settings));
 
         //[JsonPropertyName("status")]
         public int? Status { get; set; }
@@ -14,7 +14,7 @@ namespace VetmanagerAPI
 
         public string? Detail { get; set; }
 
-        public ServiceToken? Data { get; set; }
+        public Settings? Data { get; set; }
 
         public bool SaveInXML(string domainName)
         {
@@ -36,12 +36,12 @@ namespace VetmanagerAPI
 
         }
 
-        public static ServiceToken? LoadFromXML()
+        public static Settings? LoadFromXML()
         {
             try
             {
                 using FileStream fs = new("settings.xml", FileMode.Open);
-                return xmlSerializer.Deserialize(fs) as ServiceToken;
+                return xmlSerializer.Deserialize(fs) as Settings;
             }
             catch
             {

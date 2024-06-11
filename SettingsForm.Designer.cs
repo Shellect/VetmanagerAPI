@@ -110,7 +110,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "SettingsForm";
-            Text = "Form2";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Settings";
             ResumeLayout(false);
             PerformLayout();
         }

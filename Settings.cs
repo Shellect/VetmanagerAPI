@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VetmanagerAPI
 {
-    public class ServiceToken
+    public class Settings
     {
         public string? Service { get; set; }
 
@@ -15,5 +15,8 @@ namespace VetmanagerAPI
         public string? User_id { get; set; }
 
         public string? DomainName { get; set; }
+
+        public string Login = "";
+        public string Password = "";
     }
 }

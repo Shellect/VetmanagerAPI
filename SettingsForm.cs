@@ -2,6 +2,7 @@
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
+using VetmanagerAPI.responses;
 
 namespace VetmanagerAPI
 {
@@ -9,9 +10,12 @@ namespace VetmanagerAPI
     {
         private static readonly HttpClient client = new();
 
-        public SettingsForm()
+        public SettingsForm(Settings? settings)
         {
             InitializeComponent();
+            if (settings is not null) {
+                domainInput.Text = settings.DomainName;
+            }
         }
 
         private async void ConnectBtn_Click(object sender, EventArgs e)
@@ -41,7 +45,7 @@ namespace VetmanagerAPI
                     }
                     if (Owner is MainForm mainForm)
                     {
-                        mainForm.serviceToken = settingsResponse.Data;
+                        mainForm.ServiceToken = settingsResponse.Data;
                         mainForm.LoadClientsData();
                     }
 

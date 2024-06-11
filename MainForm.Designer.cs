@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            APIButton = new Button();
             clientsComboBox = new ComboBox();
             label1 = new Label();
             label2 = new Label();
@@ -39,15 +39,16 @@
             ((System.ComponentModel.ISupportInitialize)petsGridView).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // APIButton
             // 
-            button1.Location = new Point(675, 30);
-            button1.Name = "button1";
-            button1.Size = new Size(100, 25);
-            button1.TabIndex = 0;
-            button1.Text = "Настройки API";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += Button1_Click;
+            APIButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            APIButton.Location = new Point(675, 30);
+            APIButton.Name = "APIButton";
+            APIButton.Size = new Size(100, 25);
+            APIButton.TabIndex = 0;
+            APIButton.Text = "Настройки API";
+            APIButton.UseVisualStyleBackColor = true;
+            APIButton.Click += APIButton_Click;
             // 
             // clientsComboBox
             // 
@@ -78,6 +79,8 @@
             // 
             // DeleteBtn
             // 
+            DeleteBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DeleteBtn.Enabled = false;
             DeleteBtn.Location = new Point(665, 84);
             DeleteBtn.Name = "DeleteBtn";
             DeleteBtn.Size = new Size(110, 23);
@@ -87,6 +90,8 @@
             // 
             // EditBtn
             // 
+            EditBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            EditBtn.Enabled = false;
             EditBtn.Location = new Point(549, 84);
             EditBtn.Name = "EditBtn";
             EditBtn.Size = new Size(110, 23);
@@ -96,15 +101,19 @@
             // 
             // AddBtn
             // 
+            AddBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AddBtn.Enabled = false;
             AddBtn.Location = new Point(433, 84);
             AddBtn.Name = "AddBtn";
             AddBtn.Size = new Size(110, 23);
             AddBtn.TabIndex = 6;
             AddBtn.Text = "Добавить";
             AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // petsGridView
             // 
+            petsGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             petsGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             petsGridView.Location = new Point(25, 140);
             petsGridView.Name = "petsGridView";
@@ -123,7 +132,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(clientsComboBox);
-            Controls.Add(button1);
+            Controls.Add(APIButton);
             Name = "MainForm";
             Text = "VetmanagerAPI";
             ((System.ComponentModel.ISupportInitialize)petsGridView).EndInit();
@@ -135,7 +144,7 @@
 
         #endregion
 
-        private Button button1;
+        private Button APIButton;
         private ComboBox clientsComboBox;
         private Label label1;
         private Label label2;
