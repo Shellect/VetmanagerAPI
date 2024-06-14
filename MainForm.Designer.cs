@@ -52,11 +52,13 @@
             // 
             // clientsComboBox
             // 
+            clientsComboBox.DisplayMember = "FullName";
             clientsComboBox.FormattingEnabled = true;
             clientsComboBox.Location = new Point(90, 30);
             clientsComboBox.Name = "clientsComboBox";
             clientsComboBox.Size = new Size(334, 23);
             clientsComboBox.TabIndex = 1;
+            clientsComboBox.ValueMember = "Client_id";
             clientsComboBox.SelectedIndexChanged += Clients_SelectedIndexChanged;
             // 
             // label1
@@ -87,6 +89,7 @@
             DeleteBtn.TabIndex = 4;
             DeleteBtn.Text = "Удалить";
             DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.Click += DeleteBtn_Click;
             // 
             // EditBtn
             // 
@@ -98,6 +101,7 @@
             EditBtn.TabIndex = 5;
             EditBtn.Text = "Редактировать:";
             EditBtn.UseVisualStyleBackColor = true;
+            EditBtn.Click += EditBtn_Click;
             // 
             // AddBtn
             // 
@@ -119,6 +123,7 @@
             petsGridView.Name = "petsGridView";
             petsGridView.Size = new Size(750, 298);
             petsGridView.TabIndex = 7;
+            petsGridView.SelectionChanged += PetsGridView_SelectionChanged;
             // 
             // MainForm
             // 

@@ -11,6 +11,10 @@ namespace VetmanagerAPI
     {
         private static readonly HttpClient client = new();
         public Settings? ServiceToken { get; set; }
+
+        private PetViewModel petViewModel;
+
+        public int SelectedClient = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -19,6 +23,8 @@ namespace VetmanagerAPI
             {
                 LoadClientsData();
             }
+            petViewModel = new PetViewModel();
+          //  petsGridView.DataBindings.Add(new Binding("DataSource", DataContext, "Pets", false, DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void APIButton_Click(object sender, EventArgs e)
@@ -34,7 +40,53 @@ namespace VetmanagerAPI
         {
             if (ServiceToken != null && clientsComboBox.SelectedItem is Client client)
             {
-                PetForm petForm = new(ServiceToken, client);
+                PetForm petForm = new(client, ServiceToken, null)
+                {
+                    Owner = this
+                };
+                petForm.Show();
+            }
+        }
+
+        private async void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (ServiceToken is null)
+            {
+                return;
+            }
+            if (petsGridView.SelectedCells.Count == 0)
+            {
+                return;
+            }
+            int selectedRowIndex = petsGridView.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = petsGridView.Rows[selectedRowIndex];
+            int petId = (int)selectedRow.Cells[0].Value;
+
+            string url = "https://" + ServiceToken.DomainName + ".vetmanager.cloud/rest/api/pet/" + petId;
+            using HttpRequestMessage request = new(HttpMethod.Delete, url);
+            request.Headers.Add("X-USER-TOKEN", ServiceToken.Token);
+            request.Headers.Add("X-APP-NAME", ServiceToken.Service);
+            using HttpResponseMessage response = await client.SendAsync(request);
+            PetResponse? clientResponse = await response.Content.ReadFromJsonAsync<PetResponse>(new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (clientResponse is not null)
+            {
+                MessageBox.Show(clientResponse.Message);
+                LoadClientsData();
+            }
+        }
+
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+            if (ServiceToken != null && clientsComboBox.SelectedItem is Client client)
+            {
+                PetForm petForm = new(client, ServiceToken, petViewModel.SelectedId)
+                {
+                    Owner = this
+                };
                 petForm.Show();
             }
         }
@@ -59,9 +111,8 @@ namespace VetmanagerAPI
             if (dataSource is not null)
             {
                 clientsComboBox.DataSource = dataSource;
-                clientsComboBox.ValueMember = "Client_id";
-                clientsComboBox.DisplayMember = "FullName";
-                SelectPet(dataSource[0]);
+                clientsComboBox.SelectedIndex = SelectedClient;
+                SelectPet(dataSource[SelectedClient]);
                 AddBtn.Enabled = true;
             }
         }
@@ -95,14 +146,22 @@ namespace VetmanagerAPI
         {
             if (clientsComboBox.Focused && clientsComboBox.SelectedItem is Client client)
             {
-                //int clientId = (int)clientsComboBox.SelectedValue;
-                //LoadPetsData(clientId);
+                SelectedClient = clientsComboBox.SelectedIndex;
                 SelectPet(client);
                 AddBtn.Enabled = true;
             }
-
         }
 
-
+        private void PetsGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (petsGridView.SelectedCells.Count > 0)
+            {
+                int selectedRowIndex = petsGridView.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = petsGridView.Rows[selectedRowIndex];
+                petViewModel.SelectedId = (int)selectedRow.Cells[0].Value;
+                EditBtn.Enabled = true;
+            }
+            DeleteBtn.Enabled = true;
+        }
     }
 }
